@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Favorite Person</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>I love you,<br> <span class="nickname">Weird Creator</span>!</h1>
+        <div class="counter-box">
+            <p>We've been together for</p>
+            <!-- <span id="days-count">0</span> -->
+            <p>some beautiful days <br>click anywhere for more love</p> 
+        </div>
+    </div>
+
+    <div class="envelope-wrapper" id="envelope">
+        <div class="envelope">
+            <div class="back"></div>
+            <div class="letter" id="letter">
+                <img src="things/photo.jpg" class="letter-image" alt="Us">
+                <div class="letter-content">
+                    <p>Dearest Reader,</p>
+                    <p>
+                        I know, I know... you usually roll your eyes when I tell you I am coding, but I promise I used my powers for good this time! I wanted to build something that shows you exactly how I feel, even if it’s a little crazy.
+                        Since I’m always a bit chaotic with timing, let’s just call this your official Late-Valentine-Birthday-Just-Because gift. You make my head spin, and my heart race and honestly... I wouldn't have it any other way.
+                        Thank you for being the best part of my every day. I love you more than a bug free code or shoes.
+                    </p>
+                    <p>Always yours, <br> Me❤ </p>
+                </div>
+            </div>
+            <div class="front"></div>
+            <div class="flap"></div>
+        </div>
+        <div class="heart-seal">❤️</div>
+        <div class="open-me">Open Me</div>
+    </div>
+
+    <audio id="mySong" loop>
+        <source src="things/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="muteBtn" class="mute-toggle">🔊</div>
+    <div id="loveContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
