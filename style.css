@@ -11,93 +11,86 @@ body {
     background: rgba(255, 255, 255, 0.4);
     padding: 2rem; border-radius: 30px;
     backdrop-filter: blur(5px);
+    max-width: 85%;
 }
 
-#days-count { font-size: 3.5rem; font-weight: bold; display: block; }
+#days-count { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: bold; display: block; }
 
-/* --- ENVELOPE STYLES --- */
+/* --- ENVELOPE --- */
 .envelope-wrapper {
-    position: fixed; bottom: 40px; left: 40px;
-    width: 160px; height: 110px;
+    position: fixed; bottom: 30px; left: 30px;
+    width: 150px; height: 105px;
     background: #ffb3c1; z-index: 100;
     cursor: pointer; transition: 0.3s;
 }
 
 .envelope { position: relative; width: 100%; height: 100%; }
-
 .back { position: absolute; width: 100%; height: 100%; background: #ffb3c1; z-index: 1; }
 
 .letter {
-    position: absolute; bottom: 0; left: 10px;
-    width: 140px; height: 90px;
+    position: absolute; bottom: 0; left: 5%;
+    width: 90%; height: 80%;
     background: white; z-index: 2;
-    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.8s ease-in-out;
     padding: 20px; color: #c9184a;
     box-sizing: border-box; overflow: hidden;
-    font-family: 'Dancing Script', cursive; /* HANDWRITTEN FONT */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    font-family: 'Dancing Script', cursive;
 }
 
-/* Image in top right of letter */
 .letter-image {
-    float: right;
-    width: 80px; height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-left: 15px; margin-bottom: 10px;
-    border: 3px solid #fff5f7;
-    display: none; /* Hidden until opened */
+    float: right; width: 70px; height: 70px;
+    object-fit: cover; border-radius: 10px;
+    margin-left: 10px; display: none;
 }
 
-.letter-content { font-size: 1.2rem; line-height: 1.4; }
+.close-btn {
+    position: absolute; top: 10px; right: 10px;
+    cursor: pointer; display: none; font-size: 20px; font-weight: bold;
+}
 
 .front {
     position: absolute; bottom: 0; left: 0;
     width: 0; height: 0;
-    border-left: 80px solid #ffcad4;
-    border-right: 80px solid #ffcad4;
-    border-top: 55px solid transparent;
-    border-bottom: 55px solid #ffcad4;
+    border-left: 75px solid #ffcad4;
+    border-right: 75px solid #ffcad4;
+    border-top: 52px solid transparent;
+    border-bottom: 52px solid #ffcad4;
     z-index: 3;
 }
 
 .flap {
     position: absolute; top: 0; left: 0;
-    border-left: 80px solid transparent;
-    border-right: 80px solid transparent;
-    border-top: 60px solid #ff8fa3;
+    border-left: 75px solid transparent;
+    border-right: 75px solid transparent;
+    border-top: 55px solid #ff8fa3;
     transform-origin: top; transition: 0.4s; z-index: 4;
 }
 
-.heart-seal {
-    position: absolute; top: 45%; left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5; font-size: 1.5rem; transition: 0.3s;
-}
-
-.open-me {
-    position: absolute; top: -30px; left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.8rem; font-weight: bold;
-    color: #ff4d6d; white-space: nowrap;
-}
-
-/* --- BIG LETTER OPEN STATE --- */
+/* --- RESPONSIVE LETTER OPEN STATE --- */
 .envelope-wrapper.open .flap { transform: rotateX(180deg); z-index: 1; }
 
 .envelope-wrapper.open .letter {
     position: fixed;
     bottom: 50%; left: 50%;
     transform: translate(-50%, 50%);
-    width: 90%; max-width: 400px;
-    height: auto; min-height: 300px;
-    z-index: 200;
-    padding: 30px;
-    overflow-y: auto;
+    width: 85vw; max-width: 450px;
+    height: 70vh;
+    z-index: 200; padding: 30px;
+    overflow-y: auto; /* Scrollable for long text on mobile */
 }
 
-.envelope-wrapper.open .letter-image { display: block; }
-.envelope-wrapper.open .heart-seal, .envelope-wrapper.open .open-me { opacity: 0; }
+.envelope-wrapper.open .letter-image, 
+.envelope-wrapper.open .close-btn { display: block; }
+.envelope-wrapper.open .heart-seal, 
+.envelope-wrapper.open .open-me { opacity: 0; }
+
+/* --- MOBILE TWEAKS --- */
+@media (max-width: 600px) {
+    .envelope-wrapper { width: 120px; height: 85px; bottom: 20px; left: 20px; }
+    .front { border-left-width: 60px; border-right-width: 60px; border-top-width: 42px; border-bottom-width: 42px; }
+    .flap { border-left-width: 60px; border-right-width: 60px; border-top-width: 45px; }
+    h1 { font-size: 1.8rem; }
+}
 
 /* --- HEART RAIN --- */
 .heart { position: absolute; background: #ff758f; transform: rotate(45deg); pointer-events: none; }
@@ -107,7 +100,6 @@ body {
 .floating { animation: rainDown var(--duration) linear forwards; }
 @keyframes rainDown {
     0% { transform: translateY(-10vh) rotate(45deg) scale(0.5); opacity: 0; }
-    10% { opacity: 0.8; }
     100% { transform: translateY(110vh) rotate(45deg) scale(1); opacity: 0; }
 }
 .burst { animation: explode var(--duration) ease-out forwards; }
